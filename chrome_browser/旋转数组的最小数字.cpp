@@ -27,3 +27,26 @@ public:
         return rotateArray[right];
     }
 };
+
+// 若都使用右边的节点进行标记，可以省去第10行的判断，如下（注：最终只可以使用r--）：
+
+class Solution {
+public:
+    int minNumberInRotateArray(vector<int> arr) {
+        int len=arr.size();
+        int l=0,r=len-1;
+        while(l<r){
+            int mid=l+(r-l)/2;
+            if(arr[mid]<arr[r]){
+                r=mid;
+            }
+            
+            else if(arr[mid]>arr[r]){
+                l=mid+1;
+            }
+            else {r--;}
+        }
+        
+        return arr[l];
+    }
+};
